@@ -5,6 +5,7 @@ const style = StyleSheet.create({
     fontWeight: '600',
     fontSize: 24,
     lineHeight: 29,
+    color: 'black',
   },
 });
 export default style;
