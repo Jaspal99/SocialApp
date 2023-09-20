@@ -16,6 +16,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import Title from './components/Title/Title';
 
 
 
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <SafeAreaView>
-      <Text style={{fontFamily:'Inter-Black'}}>Hello Sir</Text>
+      <Title title={"Let's Explore"}/>
     </SafeAreaView>
   );
 }
