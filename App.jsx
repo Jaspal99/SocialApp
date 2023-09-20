@@ -25,7 +25,7 @@ function App() {
 
   return (
     <SafeAreaView>
-      <Text>Hello Sir</Text>
+      <Text style={{fontFamily:'Inter-Black'}}>Hello Sir</Text>
     </SafeAreaView>
   );
 }
