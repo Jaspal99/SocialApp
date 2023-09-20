@@ -8,6 +8,7 @@
 import React from 'react';
 // import type {PropsWithChildren} from 'react';
 import {
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -19,6 +20,7 @@ import {
 import Title from './components/Title/Title';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import style from './assets/styles/main';
 
 
 
@@ -29,11 +31,14 @@ function App() {
   return (
     <SafeAreaView>
       <ScrollView>
-      <View style={{
-        paddingTop:30,paddingLeft:17,paddingRight:26,
-        flex:1,flexDirection:'row',alignItems:'center',justifyContent:'space-between'}}>
+      <View style={style.header}>
       <Title title={"Let's Explore"}/>
-      <FontAwesomeIcon icon={faEnvelope} />
+      <Pressable style={style.messageIcon}>
+      <FontAwesomeIcon icon={faEnvelope} color={'#CACDDE'} size={20}/>
+      <View style={style.messageNumberContainer}>
+        <Text style={style.messageNumber}>2</Text>
+      </View>
+      </Pressable>
       </View>
       </ScrollView>
     </SafeAreaView>
