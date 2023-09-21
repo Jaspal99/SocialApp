@@ -1,8 +1,8 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 const style = StyleSheet.create({
   title: {
     fontFamily: 'Inter',
-    fontWeight: '600',
+    fontWeight: Platform.OS === 'ios' ? '600' : '700',
     fontSize: 24,
     lineHeight: 29,
     color: 'black',

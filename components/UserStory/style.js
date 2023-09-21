@@ -1,4 +1,4 @@
-const {StyleSheet} = require('react-native');
+const {StyleSheet, Platform} = require('react-native');
 
 const style = StyleSheet.create({
   storyContainer: {
@@ -7,10 +7,11 @@ const style = StyleSheet.create({
   name: {
     textAlign: 'center',
     fontFamily: 'Inter',
-    fontWeight: '500',
+    fontWeight: Platform.OS === 'ios' ? '500' : '700',
     fontSize: 14,
     lineHeight: 17,
     marginTop: 8,
+    color: 'black',
   },
   userImageContainer: {
     borderWidth: 1,

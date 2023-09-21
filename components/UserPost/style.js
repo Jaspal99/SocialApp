@@ -1,11 +1,12 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 
 const style = StyleSheet.create({
   name: {
     fontFamily: 'Inter',
-    fontWeight: '500',
+    fontWeight: Platform.OS === 'ios' ? '500' : '700',
     fontSize: 16,
     lineHeight: 19,
+    color: 'black',
   },
   location: {
     fontFamily: 'Inter',
