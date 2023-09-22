@@ -23,6 +23,7 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import style from './assets/styles/main';
 import UserStory from './components/UserStory/UserStory';
 import UserPost from './components/UserPost/UserPost';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 
@@ -150,6 +151,7 @@ function App() {
   };
 
   return (
+    <NavigationContainer>
     <SafeAreaView>
       <FlatList
         ListHeaderComponent={
@@ -221,6 +223,7 @@ function App() {
         )}
       />
     </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
