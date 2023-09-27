@@ -5,7 +5,7 @@ import UserProfileImage from '../UserProfileImage/UserProfileImage';
 export default function UserStory(prop) {
   return (
     <View style={style.storyContainer}>
-      <UserProfileImage />
+      <UserProfileImage image={prop.image} />
       <Text style={style.name}>{prop.firstName}</Text>
     </View>
   );

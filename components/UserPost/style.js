@@ -69,6 +69,10 @@ const style = StyleSheet.create({
     marginRight: horizontalScale(3),
     color: '#79869F',
   },
+  imagePost: {
+    width: '100%',
+    height: 400,
+  },
 });
 
 export default style;

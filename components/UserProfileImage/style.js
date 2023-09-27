@@ -9,5 +9,10 @@ const style = StyleSheet.create({
     padding: horizontalScale(2.5),
     borderRadius: horizontalScale(50),
   },
+  imageStory: {
+    width: 65,
+    height: 65,
+    borderRadius: 50,
+  },
 });
 export default style;

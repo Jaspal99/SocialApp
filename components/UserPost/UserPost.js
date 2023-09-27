@@ -17,7 +17,7 @@ const UserPost = props => {
     <View style={style.userPostContainer}>
       <View style={style.userInformationContainer}>
         <View style={style.userInformation}>
-          <UserProfileImage />
+          <UserProfileImage image={props.storyImage} />
           <View style={style.userPostInformation}>
             <Text style={style.name}>
               {props.firstName} {props.lastName}
@@ -35,7 +35,8 @@ const UserPost = props => {
       <View style={style.post}>
         <Image
           resizeMode={'cover'}
-          source={require('../../assets/images/default_post.png')}
+          style={style.imagePost}
+          source={{uri: props.image}}
         />
       </View>
       <View style={style.userPostStats}>
