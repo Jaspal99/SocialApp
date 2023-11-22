@@ -208,7 +208,13 @@ export default function Home({navigation}) {
         ListHeaderComponent={
           <>
             <View style={style.header}>
-              <Title title={"Let's Explore"} />
+              <Pressable
+                onPress={() => {
+                  console.log('function callled');
+                  navigation.navigate(Routes.VideoCall);
+                }}>
+                <Title title={"Let's Explore"} />
+              </Pressable>
               <Pressable
                 style={style.messageIcon}
                 // onPress={() => {

@@ -1,4 +1,34 @@
 PODS:
+  - AgoraIrisRTC_iOS (4.2.6-build.3)
+  - AgoraRtcEngine_iOS (4.2.6):
+    - AgoraRtcEngine_iOS/AIAEC (= 4.2.6)
+    - AgoraRtcEngine_iOS/AINS (= 4.2.6)
+    - AgoraRtcEngine_iOS/AudioBeauty (= 4.2.6)
+    - AgoraRtcEngine_iOS/ClearVision (= 4.2.6)
+    - AgoraRtcEngine_iOS/ContentInspect (= 4.2.6)
+    - AgoraRtcEngine_iOS/DRM (= 4.2.6)
+    - AgoraRtcEngine_iOS/FaceDetection (= 4.2.6)
+    - AgoraRtcEngine_iOS/ReplayKit (= 4.2.6)
+    - AgoraRtcEngine_iOS/RtcBasic (= 4.2.6)
+    - AgoraRtcEngine_iOS/SpatialAudio (= 4.2.6)
+    - AgoraRtcEngine_iOS/VideoCodecDec (= 4.2.6)
+    - AgoraRtcEngine_iOS/VideoCodecEnc (= 4.2.6)
+    - AgoraRtcEngine_iOS/VirtualBackground (= 4.2.6)
+    - AgoraRtcEngine_iOS/VQA (= 4.2.6)
+  - AgoraRtcEngine_iOS/AIAEC (4.2.6)
+  - AgoraRtcEngine_iOS/AINS (4.2.6)
+  - AgoraRtcEngine_iOS/AudioBeauty (4.2.6)
+  - AgoraRtcEngine_iOS/ClearVision (4.2.6)
+  - AgoraRtcEngine_iOS/ContentInspect (4.2.6)
+  - AgoraRtcEngine_iOS/DRM (4.2.6)
+  - AgoraRtcEngine_iOS/FaceDetection (4.2.6)
+  - AgoraRtcEngine_iOS/ReplayKit (4.2.6)
+  - AgoraRtcEngine_iOS/RtcBasic (4.2.6)
+  - AgoraRtcEngine_iOS/SpatialAudio (4.2.6)
+  - AgoraRtcEngine_iOS/VideoCodecDec (4.2.6)
+  - AgoraRtcEngine_iOS/VideoCodecEnc (4.2.6)
+  - AgoraRtcEngine_iOS/VirtualBackground (4.2.6)
+  - AgoraRtcEngine_iOS/VQA (4.2.6)
   - boost (1.76.0)
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
@@ -375,6 +405,11 @@ PODS:
   - React-jsinspector (0.72.4)
   - React-logger (0.72.4):
     - glog
+  - react-native-agora (4.2.6):
+    - AgoraIrisRTC_iOS (= 4.2.6-build.3)
+    - AgoraRtcEngine_iOS (= 4.2.6)
+    - RCT-Folly (= 2021.07.22.00)
+    - React-Core
   - react-native-pager-view (6.2.1):
     - React-Core
   - react-native-safe-area-context (4.7.2):
@@ -580,6 +615,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-agora (from `../node_modules/react-native-agora`)
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
@@ -609,6 +645,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AgoraIrisRTC_iOS
+    - AgoraRtcEngine_iOS
     - CocoaAsyncSocket
     - Flipper
     - Flipper-Boost-iOSX
@@ -668,6 +706,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-agora:
+    :path: "../node_modules/react-native-agora"
   react-native-pager-view:
     :path: "../node_modules/react-native-pager-view"
   react-native-safe-area-context:
@@ -722,6 +762,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  AgoraIrisRTC_iOS: 8346499b82968a4967e3d0bec2cf14bf7c0c3f76
+  AgoraRtcEngine_iOS: ac647332ad8f86d79cf810601c9e62b28c3a4de0
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
@@ -755,6 +797,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: c7f826e40fa9cab5d37cab6130b1af237332b594
   React-jsinspector: aaed4cf551c4a1c98092436518c2d267b13a673f
   React-logger: da1ebe05ae06eb6db4b162202faeafac4b435e77
+  react-native-agora: 7026292738f2de759f532938db629c7acda377af
   react-native-pager-view: d211379f61895b6349bd7e571b44a26d005c2975
   react-native-safe-area-context: 7aa8e6d9d0f3100a820efb1a98af68aa747f9284
   React-NativeModulesApple: edb5ace14f73f4969df6e7b1f3e41bef0012740f
@@ -786,4 +829,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b25335fbdfa59215fe209354619576cb3b663517
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.13.0

@@ -7,6 +7,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import {Text, View} from 'react-native';
 import ProfileTabTitle from '../components/ProfileTabTitle/ProfileTabTitle';
 import ProfileTabPost from '../components/ProfileTabPost/ProfileTabPost';
+import VideoCall from '../Screens/VideoCall/VideoCall';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const ProfileTabs = createMaterialTopTabNavigator();
@@ -62,6 +63,7 @@ const MainMenuNavigation = () => {
       }}>
       <Drawer.Screen name={Routes.Home} component={Home} />
       <Drawer.Screen name={Routes.Profile} component={Profile} />
+      <Drawer.Screen name={Routes.VideoCall} component={VideoCall} />
     </Drawer.Navigator>
   );
 };
