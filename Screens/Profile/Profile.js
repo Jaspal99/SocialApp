@@ -20,7 +20,7 @@ const Profile = () => {
             </View>
           </View>
           <View style={style.userNameContainer}>
-            <Text style={style.userName}>Emmanuel Robertsen</Text>
+            <Text style={style.userName}>Jas S</Text>
           </View>
           <View style={style.profileStatsContainer}>
             <View style={[style.singleStatContainer, style.singleStatBorder]}>

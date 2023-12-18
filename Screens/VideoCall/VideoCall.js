@@ -1,6 +1,13 @@
 import axios from 'axios';
 import React, {useRef, useState, useEffect} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {PermissionsAndroid, Platform} from 'react-native';
 import {
   ClientRoleType,
@@ -10,18 +17,35 @@ import {
   ChannelProfileType,
 } from 'react-native-agora';
 import base64 from 'base-64';
+import {FaSymbol} from '@fortawesome/fontawesome-svg-core';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {
+  faBookmark,
+  faComment,
+  faEye,
+  faHeart,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faArrowsLeftRight,
+  faEyeDropper,
+  faEyeSlash,
+  faMicrophone,
+  faPhone,
+  faVideoCamera,
+} from '@fortawesome/free-solid-svg-icons';
 const appId = 'a64ea0ef69c3491db821c412bd8ef2c7';
 const channelName = 'SocialApp';
 const token =
-  '007eJxTYNjfuEP6tYSw478P8xK/7XuXvtzRPuG1n1Kae0pbWWas2i8FhkQzk9REg9Q0M8tkYxNLw5QkCyPDZBNDo6QUi9Q0o2RzvQOxqQ2BjAxu0neYGBkgEMTnZAjOT85MzHEsKGBgAAA17SGx';
-const uid = 1;
+  '007eJxTYND8IMjrIaVkvt8i7fU8p2di2f93PojcuXrnp1OXnX8c+FatwJBoZpKaaJCaZmaZbGxiaZiSZGFkmGxiaJSUYpGaZpRsbtuTk9oQyMiwMlmPgREKQXxOhuD85MzEHMeCAgYGAGiAIus=';
+const uid = Math.floor(Math.random() * 100000);
 
 const VideoCall = () => {
   const agoraEngineRef = useRef(); // Agora engine instance
   const [isJoined, setIsJoined] = useState(false); // Indicates if the local user has joined the channel
   const [remoteUid, setRemoteUid] = useState(0); // Uid of the remote user
   const [message, setMessage] = useState(''); // Message to the user
-
+  const [isVideo, setIsVideo] = useState(false);
+  const [isAudio, setIsAudio] = useState(false);
   const getPermission = async () => {
     if (Platform.OS === 'android') {
       await PermissionsAndroid.requestMultiple([
@@ -35,6 +59,63 @@ const VideoCall = () => {
     setMessage(msg);
   }
 
+  const sendNotification = async () => {
+    //get device token to send notification to user
+    const token = route?.item?.deviceId;
+    // user name of receiver
+    const senderName = 'Default user';
+    var currData = JSON.stringify({
+      data: {
+        //dta to send via notification
+        moduleTitle: 'agora',
+        channelName: 'VideoCallApp',
+        token: 'some agora token',
+        callerName: senderName,
+      },
+      notification: {
+        body: `message from ${senderName}`,
+        title: 'New Message',
+      },
+      to: token,
+    });
+    const FIREBASE_SERVER_KEY = 'firebase server key store in const file';
+    var config = {
+      method: 'POST',
+      url: 'https://fcm.googleapis.com/fcm/send',
+      headers: {
+        Authorization: `key=${FIREBASE_SERVER_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      data: currData,
+    };
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const handleMicChange = () => {
+    if (isAudio) {
+      agoraEngineRef.current.disableAudio();
+    } else {
+      agoraEngineRef.current.enableAudio();
+    }
+    setIsAudio(!isAudio);
+  };
+
+  const handleVideoChange = async () => {
+    if (isVideo) {
+      agoraEngineRef.current.disableVideo();
+      agoraEngineRef.current.stopPreview();
+    } else {
+      agoraEngineRef.current.enableVideo();
+      agoraEngineRef.current.startPreview();
+    }
+    setIsVideo(!isVideo);
+  };
   const join = async () => {
     if (isJoined) {
       return;
@@ -47,6 +128,7 @@ const VideoCall = () => {
       agoraEngineRef.current?.joinChannel(token, channelName, uid, {
         clientRoleType: ClientRoleType.ClientRoleBroadcaster,
       });
+      setIsJoined(true);
     } catch (e) {
       console.log(e);
     }
@@ -90,6 +172,10 @@ const VideoCall = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const switchCam = () => {
+    agoraEngineRef.current.switchCamera();
   };
 
   useEffect(() => {
@@ -146,20 +232,117 @@ const VideoCall = () => {
         contentContainerStyle={styles.scrollContainer}>
         {isJoined ? (
           <React.Fragment key={0}>
-            <RtcSurfaceView canvas={{uid: 0}} style={styles.videoView} />
-            <Text>Local user uid: {uid}</Text>
+            <View
+              style={{
+                width: '100%',
+                padding: 0,
+                margin: 0,
+                justifyContent: 'center',
+                alignItems: 'center',
+                // backgroundColor: 'yellow',
+              }}>
+              {isVideo ? (
+                <RtcSurfaceView canvas={{uid: 0}} style={styles.videoView} />
+              ) : (
+                <View
+                  style={{
+                    width: '90%',
+                    height: 500,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: 'gray',
+                  }}>
+                  <FontAwesomeIcon size={50} icon={faEyeSlash} />
+                </View>
+              )}
+
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-evenly',
+                  width: '90%',
+                  height: 70,
+                  alignItems: 'center',
+                  backgroundColor: 'lightblue',
+                }}>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: isAudio ? 'black' : 'gray',
+                    padding: 10,
+                    borderRadius: 50,
+                  }}
+                  onPress={handleMicChange}>
+                  <FontAwesomeIcon
+                    icon={faMicrophone}
+                    size={25}
+                    color="white"
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: isVideo ? 'black' : 'gray',
+                    padding: 10,
+                    borderRadius: 50,
+                  }}
+                  onPress={handleVideoChange}>
+                  <FontAwesomeIcon
+                    icon={faVideoCamera}
+                    size={25}
+                    color="white"
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: 'black',
+                    padding: 10,
+                    borderRadius: 50,
+                  }}
+                  onPress={switchCam}>
+                  <FontAwesomeIcon
+                    icon={faArrowsLeftRight}
+                    size={25}
+                    color="white"
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: 'red',
+                    padding: 10,
+                    borderRadius: 50,
+                  }}
+                  onPress={leave}>
+                  <FontAwesomeIcon icon={faPhone} size={25} color="white" />
+                </TouchableOpacity>
+              </View>
+            </View>
+
+            {/* <Text>Local user uid: {uid}</Text> */}
           </React.Fragment>
         ) : (
           <Text>Join a channel</Text>
         )}
         {isJoined && remoteUid !== 0 ? (
-          <React.Fragment key={remoteUid}>
+          <View
+            style={{
+              position: 'absolute',
+              width: 200,
+              height: 200,
+              top: 1,
+              right: 1,
+            }}
+            key={remoteUid}>
             <RtcSurfaceView
               canvas={{uid: remoteUid}}
-              style={styles.videoView}
+              style={{
+                width: 197,
+                height: 197,
+              }}
             />
             <Text>Remote user uid: {remoteUid}</Text>
-          </React.Fragment>
+          </View>
         ) : (
           <Text>Waiting for a remote user to join</Text>
         )}
@@ -181,7 +364,8 @@ const styles = StyleSheet.create({
   main: {flex: 1, alignItems: 'center'},
   scroll: {flex: 1, backgroundColor: '#ddeeff', width: '100%'},
   scrollContainer: {alignItems: 'center'},
-  videoView: {width: '90%', height: 200},
+  videoView: {width: '90%', height: 500},
+  remoteView: {width: 200, height: 200},
   btnContainer: {flexDirection: 'row', justifyContent: 'center'},
   head: {fontSize: 20},
   info: {backgroundColor: '#ffffe0', color: '#0000ff'},
